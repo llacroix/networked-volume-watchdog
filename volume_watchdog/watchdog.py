@@ -25,7 +25,10 @@ async def listen_events(config):
                 volume_id = event['Actor']['ID']
                 volumes = await docker.volumes.list()
                 for volume in volumes.get('Volumes', []):
-                    if volume['Options'].get('type') == 'nfs':
+                    if (
+                        volume['Options'] and
+                        volume['Options'].get('type') == 'nfs'
+                    ):
                         target_path = path.join(local_path, volume_id)
 
                         if not path.exists(target_path):
