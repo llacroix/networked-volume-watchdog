@@ -20,6 +20,13 @@ def get_parser():
         help="Directory in which the volumes are created",
     )
 
+    parser.add_option(
+        "-r",
+        "--regex-path",
+        dest="regex_path",
+        help="Regex to extract the path where the mounted directory is located"
+    )
+
     parser.add_option("--log-level", dest="log_level", default="INFO")
     parser.add_option("--log-file", dest="log_file", default=None)
     parser.add_option(
