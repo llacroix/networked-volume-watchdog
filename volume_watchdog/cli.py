@@ -21,6 +21,13 @@ def get_parser():
     )
 
     parser.add_option(
+        "-i",
+        "--ignore",
+        dest="ignores",
+        action="append",
+    )
+
+    parser.add_option(
         "-r",
         "--regex-path",
         dest="regex",
@@ -43,9 +50,15 @@ def main(args=None, block=True):
         args if args is not None else sys.argv[1:]
     )
     config.options = options
+
     setup_logging(config)
     logger.info("Starting up %s", args)
     logger.info("Volumes directory will be created in %s", options.target_path)
+    logger.info("Ignoring volumes %s" % (options.ignores,))
+
+    if options.regex:
+        logger.info("Regex is %s" % (options.regex))
+
     task = loop.create_task(main_loop(config))
 
     if block:

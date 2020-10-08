@@ -65,6 +65,9 @@ async def listen_events(config):
                 volumes = await docker.volumes.list()
 
                 for volume in volumes.get('Volumes', []):
+                    if volume.get('Name') in config.options.ignores:
+                        continue
+
                     relative_path = get_path(config.options, volume)
                     if not relative_path:
                         continue
