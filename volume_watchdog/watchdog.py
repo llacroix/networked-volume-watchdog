@@ -20,7 +20,7 @@ def get_device_path(options, device):
 def get_path(options, volume):
     opts = volume.get('Options', {})
     if opts.get('type') == 'nfs':
-        if opts.get('device'):
+        if opts.get('device') and options.regex:
             return get_device_path(options, opts.get('device'))
         else:
             return volume['Name']
