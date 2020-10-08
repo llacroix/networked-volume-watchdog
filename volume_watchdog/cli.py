@@ -23,7 +23,7 @@ def get_parser():
     parser.add_option(
         "-r",
         "--regex-path",
-        dest="regex_path",
+        dest="regex",
         help="Regex to extract the path where the mounted directory is located"
     )
 
